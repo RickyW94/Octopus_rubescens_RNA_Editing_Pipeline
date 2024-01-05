@@ -27,6 +27,12 @@ fastp -i R4c_1.fq.gz -I R4c_2.fq.gz -o FastpTrimmedRNAReads/R4c_1_trimmed.fq.gz 
 # '-O' is followed by the name of the output file corresponding to R4c_2.fq.gz
 ```
 ## rCorrector
+Install rcorrector
 There are multiple ways to install rcorrector. I am using the instructions on the [rcorrector github](https://github.com/mourisl/Rcorrector)
 1. Clone the GitHub repo, e.g. with ```git clone https://github.com/mourisl/rcorrector.git```
 2. Run ```make``` in the repo directory. During the ```make``` procedure, the script will check whether you have jellyfish2 in $PATH. If not, it will download and compile jellyfish2 from its repository.
+
+Run rcorrector
+Installation using git clone will get you the perl file you need to run rcorrector, just make sure the perl file is in the same directory as your fastp outputs.
+```
+perl run_rcorrector.pl

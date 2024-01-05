@@ -19,7 +19,9 @@ conda install bioconda::fastp
 ```
 This will install Fastp in whatever conda environment is currently active, which will most likely be the default 'base' denoted by the '(base)' at the beginning of the bash prompt
 
-Run Fastp on each pair using the '-i' argument for paired files
+Then run Fastp on each pair using the '-i' argument for paired files
 ```
-
+fastp -i R4c_1.fq.gz -I R4c_2.fq.gz -o FastpTrimmedRNAReads/R4c_1_trimmed.fq.gz -O FastpTrimmedRNAReads/R4c_2_trimmed.fq.gz
+# '-o' is followed by the name of the output file corresponding to R4c_1.fq.gz
+# '-O' is followed by the name of the output file corresponding to R4c_2.fq.gz
 ```

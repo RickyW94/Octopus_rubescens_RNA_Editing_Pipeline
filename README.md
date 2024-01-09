@@ -58,4 +58,9 @@ The above command will create a new conda environment with python V2.7 installed
 conda activate python2_env
 ```
 Instead of seeing '(base)' at the beginning of the bash prompt like you have up until now, you should see '(python2_env)'
-
+And before you can run this script, you will need to decompress the files. Up until now the applications have been able to execute on compressed files, but this script is not that cool :P. The following code should work as a template to decompress (AKA unzip) the files.
+```
+gunzip -c filename.fq.gz > filename.fq
+```
+The command is probably supposed to be pronounced out loud as 'jee-unzip' but I just pronounce it as spelled with a hard 'g'. It does the opposite of the 'gzip' command, which compresses files.
+The '-c' parameter means that it will leave the original file alone and print the output to the command line. That's good because we want to keep the intermediate files, but bad because it'll just spit gigabytes of fastq data onto the screen for several minutes and accomplish nothing. This is why, after we specify the filename.fq.gz to unzip, we then pipe that output into a text file named filename.fq (all we've done is dropped the '.gz' extension on the name). You could probably easily write the command to unzip all the files you want to at once and rename them accordingly, but if you do it wrong you'll create unzipped copies of every zipped file in the folder and you probably have ones you'd rather not unzip. If you want to do it all at once, ask Kirt how to format a command for that, he'll show you a simple regex tip, otherwise you'll have to run the command once for every single file, which doesn't take super long so it's not a huge deal.

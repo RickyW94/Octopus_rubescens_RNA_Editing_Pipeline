@@ -1,4 +1,5 @@
 # RNA Editing Pipeline
+This was adapted from Jaydee Sereewit's pipeline [found here](https://github.com/asereewit/RNA-Editing-in-Octopus-rubescens-in-Response-to-Ocean-Acidification-Methods/tree/0.1.0)
 ## Perform QC on raw RNA reads
 Navigate to folder with raw reads
 ```
@@ -13,7 +14,7 @@ The raw reads were named according to the following format:
   'R10c_2.fq.gz' is the second of two read files, the reverse read file is named 'R10c_1.fq.gz'  
   The '.fq' extension denotes the fastq format, while '.gz' means it is a 'gzipped' file, AKA compressed  
 
-## Fastp
+### Fastp
 [Install Fastp](https://anaconda.org/bioconda/fastp) (I used V0.20.1)
 ```
 conda install bioconda::fastp
@@ -26,7 +27,7 @@ fastp -i R4c_1.fq.gz -I R4c_2.fq.gz -o FastpTrimmedRNAReads/R4c_1_trimmed.fq.gz 
 # '-o' is followed by the name of the output file corresponding to R4c_1.fq.gz
 # '-O' is followed by the name of the output file corresponding to R4c_2.fq.gz
 ```
-## rCorrector
+### rCorrector
 Install rcorrector
 There are multiple ways to install rcorrector. I am using the instructions on the [rcorrector github](https://github.com/mourisl/Rcorrector)
 1. Clone the GitHub repo, e.g. with ```git clone https://github.com/mourisl/rcorrector.git```
@@ -71,11 +72,12 @@ gunzip -c filename.fq.gz > filename.fq
 
 Now that you've properly activated the python 2 conda environment and have unzipped all the files, you are ready to run the script. Unfortunately you will have to run separately for each pair, which is slightly extra typing work, but if you just open a bunch of terminals and do them all concurrently it might save a little time. I don't remember how long this step takes, but this script didn't actually remove any uncorrectable reads, because there were none. I just used it because it was part of the supposed due diligence Jaydee built in to the pipeline. If you can't get it to work, you can probably skip it.
 Anyway here's an example command that you'll need to duplicate for each pair
-
 ```
 python3 FilterUncorrectabledPEfastq.py \
 -1 R4c_1_trimmed.fq \ # I've added line breaks to make things easier to read, but since I used '\' at each break it won't affect you copying and pasting the code... I think
 -2 R4c_2_trimmed.fq \
 -s R4c_trimmed_corrected_log
 ```
-
+### rRNA removal
+Our sequence data should still have a bunch of rRNA because the original extraction certainly didn't remove it, so that got sequenced too. Thankfully, rRNA is pretty conserved, so we can use an rRNA dataset from a database to match to ours our rRNA and remove it using an alignment tool called Bowtie2. I created a conda environment with bowtie2 using the same method I showed above for creating evironments, but I didn't specify a version, and neither should you. My bowtie version at the time was 2.5.0, and if you can't replicate my results you can try going back to that version, but otherwise you should just let conda find the latest version by default when it creates the environment.
+I used the same rRNA dataset as Jaydee did, which was _Octopus vulgaris_ 18s rRNA FJ617439 from the SILVA database

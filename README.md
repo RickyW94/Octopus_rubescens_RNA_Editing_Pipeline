@@ -35,4 +35,27 @@ There are multiple ways to install rcorrector. I am using the instructions on th
 Run rcorrector
 Installation using git clone will get you the perl file you need to run rcorrector, just make sure the perl file is in the same directory as your fastp outputs.
 ```
-perl run_rcorrector.pl
+perl run_rcorrector.pl \
+-1 \ # denotes the first items in the paired end files
+R4c_1_trimmed.fq.gz,R6c_1_trimmed.fq.gz,R7c_1_trimmed.fq.gz,R8c_1_trimmed.fq.gz,R9c_1_trimmed.fq.gz,R10c_1_trimmed.fq.gz \
+-2 \ # denotes the second items in the paired end files
+R4c_2_trimmed.fq.gz,R6c_2_trimmed.fq.gz,R7c_2_trimmed.fq.gz,R8c_2_trimmed.fq.gz,R9c_2_trimmed.fq.gz,R10c_2_trimmed.fq.gz
+```
+Now we filter the uncorrectable reads using a terrible script, and I don't know where Jaydee got it from...
+It is currently located in ```/media/work/Ricky_Sequencing/RNA/Working_RNA/FastpTrimmedRNAReads```
+I'm so sorry the folder structure is so terrible. You can copy it from there to anywhere else, just navigate to the folder and use the 'cp' command
+```
+cp FilterUncorrectabledPEfastq.py /media/work/[a reasonable folder location somewhere else]
+```
+The above command template should work once you figure out where you want to put stuff. I recommend keeping most of the outputs in the same folder, it will get cluttered, but putting things in separate folders can be even worse sometimes
+The script itself needs to be executed in the same folder as the trimmed reads. Also, the script was written before python 3, so you'll need to run it using a python V2.7 environment. I created one in conda, and while I don't remember the exact command, it should have looked something like this
+```
+conda create -n python2_env python=2.7
+```
+'-n' is the name parameter, and python2_env is the argument you assign to that parameter
+The above command will create a new conda environment with python V2.7 installed. Then to activate it you would use the following command
+```
+conda activate python2_env
+```
+Instead of seeing '(base)' at the beginning of the bash prompt like you have up until now, you should see '(python2_env)'
+

@@ -68,4 +68,11 @@ gunzip -c filename.fq.gz > filename.fq
   The '-c' parameter means that it will leave the original file alone and print the output to the command line. That's good because we want to keep the intermediate files, but bad because it'll just spit gigabytes of fastq data onto the screen for several minutes and  accomplish nothing. This is why, after we specify the filename.fq.gz to unzip, we then pipe that output into a text file named filename.fq (all we've done is dropped the '.gz' extension on the name). You could probably easily write the command to unzip all the files you want to at once and rename them accordingly, but if you do it wrong you'll create unzipped copies of every zipped file in the folder and you probably have ones you'd rather not unzip. If you want to do it all at once, ask Kirt how to format a command for that, he'll show you a simple regex tip, otherwise you'll have to run the command once for every single file, which doesn't take super long so it's not a huge deal.
 
 </details>
-  
+Now that you've properly activated the python 2 conda environment and have unzipped all the files, you are ready to run the script. Unfortunately you will have to run separately for each pair, which is slightly extra typing work, but if you just open a bunch of terminals and do them all concurrently it might save a little time. I don't remember how long this step takes, but this script didn't actually remove any uncorrectable reads, because there were none. I just used it because it was part of the supposed due diligence Jaydee built in to the pipeline. If you can't get it to work, you can probably skip it.
+Anyway here's an example command that you'll need to duplicate for each pair
+```
+python3 FilterUncorrectabledPEfastq.py \
+-1 R4c_1_trimmed.fq \ # I've added line breaks to make things easier to read, but since I used '\' at each break it won't affect you copying and pasting the code... I think
+-2 R4c_2_trimmed.fq \
+-s R4c_trimmed_corrected_log
+```

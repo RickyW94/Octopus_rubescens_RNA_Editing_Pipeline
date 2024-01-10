@@ -47,8 +47,7 @@ It is currently located in ```/media/work/Ricky_Sequencing/RNA/Working_RNA/Fastp
 <details>
   <summary>If this doesn't work</summary>
   There is another version of this python script located in 
-  ```/media/work/Ricky_Sequencing/RNA/Working_RNA/FastpTrimmedRNAReads/unzipped_rcorrected/trinity_bowtie_results```
-  
+  [/media/work/Ricky_Sequencing/RNA/Working_RNA/FastpTrimmedRNAReads/unzipped_rcorrected/trinity_bowtie_results]
   It may be the one I actually used, I can't remember and for that I apologize. I updated the structure of line 78 from “R2.next()” to “next(R2)”
 </details>
 

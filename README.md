@@ -42,14 +42,16 @@ R4c_1_trimmed.fq.gz,R6c_1_trimmed.fq.gz,R7c_1_trimmed.fq.gz,R8c_1_trimmed.fq.gz,
 -2 \ # denotes the second items in the paired end files
 R4c_2_trimmed.fq.gz,R6c_2_trimmed.fq.gz,R7c_2_trimmed.fq.gz,R8c_2_trimmed.fq.gz,R9c_2_trimmed.fq.gz,R10c_2_trimmed.fq.gz
 ```
-Now we filter the uncorrectable reads using a terrible script, and I don't know where Jaydee got it from...
-It is currently located in ```/media/work/Ricky_Sequencing/RNA/Working_RNA/FastpTrimmedRNAReads```
+### FilterUncorrectabledPEfastq.py
+Now we filter the uncorrectable reads using a terrible script. You can still find it [here](https://github.com/harvardinformatics/TranscriptomeAssemblyTools/tree/master/utilities) on github.
+A copy is currently located in ```/media/work/Ricky_Sequencing/RNA/Working_RNA/FastpTrimmedRNAReads``` and it is named 'FilterUncorrectabledPEfastq.py'
 <details>
   <summary>If this doesn't work</summary>
   There is another version of this python script located in 
   [/media/work/Ricky_Sequencing/RNA/Working_RNA/FastpTrimmedRNAReads/unzipped_rcorrected/trinity_bowtie_results]
   
   It may be the one I actually used, I can't remember and for that I apologize. I updated the structure of line 78 from “R2.next()” to “next(R2)”
+  Also, it might be easier to try the script from the github, but I still don't know if the clowns that made it have updated it to work in python3. I could test it but I don't wanna.
 </details>
 
 I'm so sorry the folder structure is so terrible. You can copy it from there to anywhere else, just navigate to the folder and use the 'cp' command
@@ -99,4 +101,4 @@ bowtie2-build -f \# this is the initial command, '-f' tells it that we're using 
 Ovulgaris18srRNA.fasta,Ocyanea28srRNA.fasta \# these are the two rRNA datasets in fasta format, separated by a comma, no space
 Ovulgaris18sOcyanea28srRNA # this is the base name which will be included in all of the index files it outputs, they will each have their own additions such as '.rev.1.bt2' tacked on
 ```
-Once you activate the bowtie environment in conda, you are ready to build a bowtie index.
+

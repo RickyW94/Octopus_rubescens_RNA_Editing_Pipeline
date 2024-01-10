@@ -92,4 +92,11 @@ Our sequence data should still have a bunch of rRNA because the original extract
 ```
 conda create -n bowtie_environment bowtie2
 ```
-I didn't specify a version, and neither should you. My bowtie version at the time was 2.5.0, and if you can't replicate my results you can try going back to that version, but otherwise you should just let conda find the latest version by default when it creates the environment. I used the same rRNA datasets as Jaydee did, which were _Octopus vulgaris_ 18s rRNA FJ617439 and _Octopus cyanea_ 28s rRNA from the SILVA database. Once you activate the bowtie environment in conda, you are ready to build a bowtie index.
+I didn't specify a version, and neither should you. My bowtie version at the time was 2.5.0, and if you can't replicate my results you can try going back to that version, but otherwise you should just let conda find the latest version by default when it creates the environment. I used the same rRNA datasets as Jaydee did, which were _Octopus vulgaris_ 18s rRNA FJ617439 and _Octopus cyanea_ 28s rRNA from the SILVA database.
+Unfortunately, only the _O. vulgaris_ dataset is available on SILVA. I couldn't find the _O. cyanea_ dataset online, so I used Jaydee's files that he kept from his run, and as far as I know this isn't a problem. These files are named 'Ocyanea28srRNA.fasta' and 'Ovulgaris18srRNA.fasta'. You'll want to find these fastas and copy them from [/media/work/Ricky_Sequencing/RNA/Working_RNA/FastpTrimmedRNAReads/unzipped_rcorrected/trinity_bowtie_results] into the directory containing your trimmed and filtered read files (remember these are named something like 'R4c_1_trimmed.fq'). Once you have everything in that directory and have activated the bowtie2 environment using 'conda activate [environment name]', you are ready to start building the bowtie index with the following command.
+```
+bowtie2-build -f \# this is the initial command, '-f' tells it that we're using fasta format
+Ovulgaris18srRNA.fasta,Ocyanea28srRNA.fasta \# these are the two rRNA datasets in fasta format, separated by a comma, no space
+Ovulgaris18sOcyanea28srRNA # this is the base name which will be included in all of the index files it outputs, they will each have their own additions such as '.rev.1.bt2' tacked on
+```
+Once you activate the bowtie environment in conda, you are ready to build a bowtie index.

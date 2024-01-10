@@ -37,10 +37,10 @@ Run rcorrector
 Installation using git clone will get you the perl file you need to run rcorrector, just make sure the perl file is in the same directory as your fastp outputs.
 ```
 perl run_rcorrector.pl \
--1 \ # denotes the first items in the paired end files
-R4c_1_trimmed.fq.gz,R6c_1_trimmed.fq.gz,R7c_1_trimmed.fq.gz,R8c_1_trimmed.fq.gz,R9c_1_trimmed.fq.gz,R10c_1_trimmed.fq.gz \
--2 \ # denotes the second items in the paired end files
-R4c_2_trimmed.fq.gz,R6c_2_trimmed.fq.gz,R7c_2_trimmed.fq.gz,R8c_2_trimmed.fq.gz,R9c_2_trimmed.fq.gz,R10c_2_trimmed.fq.gz
+  -1 \ # denotes the first items in the paired end files
+  R4c_1_trimmed.fq.gz,R6c_1_trimmed.fq.gz,R7c_1_trimmed.fq.gz,R8c_1_trimmed.fq.gz,R9c_1_trimmed.fq.gz,R10c_1_trimmed.fq.gz \
+  -2 \ # denotes the second items in the paired end files
+  R4c_2_trimmed.fq.gz,R6c_2_trimmed.fq.gz,R7c_2_trimmed.fq.gz,R8c_2_trimmed.fq.gz,R9c_2_trimmed.fq.gz,R10c_2_trimmed.fq.gz
 ```
 ### FilterUncorrectabledPEfastq.py
 Now we filter the uncorrectable reads using a terrible script. You can still find it [here](https://github.com/harvardinformatics/TranscriptomeAssemblyTools/tree/master/utilities) on github.
@@ -51,7 +51,8 @@ A copy is currently located in ```/media/work/Ricky_Sequencing/RNA/Working_RNA/F
   [/media/work/Ricky_Sequencing/RNA/Working_RNA/FastpTrimmedRNAReads/unzipped_rcorrected/trinity_bowtie_results]
   
   It may be the one I actually used, I can't remember and for that I apologize. I updated the structure of line 78 from “R2.next()” to “next(R2)”
-  Also, it might be easier to try the script from the github, but I still don't know if the clowns that made it have updated it to work in python3. I could test it but I don't wanna.
+  
+  _Also, it might be easier to try the script from the github, but I still don't know if the clowns that made it have updated it to work in python3. I could test it but I don't wanna._
 </details>
 
 I'm so sorry the folder structure is so terrible. You can copy it from there to anywhere else, just navigate to the folder and use the 'cp' command
@@ -85,8 +86,8 @@ Anyway here's an example command that you'll need to duplicate for each pair
 ```
 python3 FilterUncorrectabledPEfastq.py \
 -1 R4c_1_trimmed.fq \ # I've added line breaks to make things easier to read, but since I used '\' at each break it won't affect you copying and pasting the code... I think
--2 R4c_2_trimmed.fq \
--s R4c_trimmed_corrected_log
+  -2 R4c_2_trimmed.fq \
+  -s R4c_trimmed_corrected_log
 ```
 
 ### rRNA removal
@@ -101,4 +102,8 @@ bowtie2-build -f \# this is the initial command, '-f' tells it that we're using 
 Ovulgaris18srRNA.fasta,Ocyanea28srRNA.fasta \# these are the two rRNA datasets in fasta format, separated by a comma, no space
 Ovulgaris18sOcyanea28srRNA # this is the base name which will be included in all of the index files it outputs, they will each have their own additions such as '.rev.1.bt2' tacked on
 ```
-
+Removing rRNA using bowtie2. You'll have to run the command once for each every single file, you can't even combine the single pairs. But you could just open a bunch of terminal windows and start them all at once :P
+```
+bowtie2 --quiet --very-sensitive-local --phred33 \# 'quiet' makes it so that it won't vomit millions of lines of text into your terminal, the other 2 are technical alignment parameters which can be found on bowtie2's documentation site
+  -x Ovulgaris18sOcyanea28srRNA \# '-x' is the index call parameter, and we feed it the name we gave to all of our index files
+  -U unfixrm_R4c_1_trimmed.fq \# 

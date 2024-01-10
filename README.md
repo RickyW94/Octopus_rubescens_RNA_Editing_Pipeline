@@ -49,6 +49,7 @@ It is currently located in ```/media/work/Ricky_Sequencing/RNA/Working_RNA/Fastp
   There is another version of this python script located in /media/work/Ricky_Sequencing/RNA/Working_RNA/FastpTrimmedRNAReads/unzipped_rcorrected/trinity_bowtie_results
   It may be the one I actually used, I can't remember and for that I apologize. I updated the structure of line 78 from “R2.next()” to “next(R2)”
 </details>
+
 I'm so sorry the folder structure is so terrible. You can copy it from there to anywhere else, just navigate to the folder and use the 'cp' command
 ```
 cp FilterUncorrectabledPEfastq.py /media/work/[a reasonable folder location somewhere else]

@@ -44,6 +44,11 @@ R4c_2_trimmed.fq.gz,R6c_2_trimmed.fq.gz,R7c_2_trimmed.fq.gz,R8c_2_trimmed.fq.gz,
 ```
 Now we filter the uncorrectable reads using a terrible script, and I don't know where Jaydee got it from...
 It is currently located in ```/media/work/Ricky_Sequencing/RNA/Working_RNA/FastpTrimmedRNAReads```
+<details>
+  <summary>If this doesn't work</summary>
+  There is another version of this python script located in /media/work/Ricky_Sequencing/RNA/Working_RNA/FastpTrimmedRNAReads/unzipped_rcorrected/trinity_bowtie_results
+  It may be the one I actually used, I can't remember and for that I apologize. I updated the structure of line 78 from “R2.next()” to “next(R2)”
+</details>
 I'm so sorry the folder structure is so terrible. You can copy it from there to anywhere else, just navigate to the folder and use the 'cp' command
 ```
 cp FilterUncorrectabledPEfastq.py /media/work/[a reasonable folder location somewhere else]
@@ -78,6 +83,10 @@ python3 FilterUncorrectabledPEfastq.py \
 -2 R4c_2_trimmed.fq \
 -s R4c_trimmed_corrected_log
 ```
+
 ### rRNA removal
-Our sequence data should still have a bunch of rRNA because the original extraction certainly didn't remove it, so that got sequenced too. Thankfully, rRNA is pretty conserved, so we can use an rRNA dataset from a database to match to ours our rRNA and remove it using an alignment tool called Bowtie2. I created a conda environment with bowtie2 using the same method I showed above for creating evironments, but I didn't specify a version, and neither should you. My bowtie version at the time was 2.5.0, and if you can't replicate my results you can try going back to that version, but otherwise you should just let conda find the latest version by default when it creates the environment.
-I used the same rRNA dataset as Jaydee did, which was _Octopus vulgaris_ 18s rRNA FJ617439 from the SILVA database
+Our sequence data should still have a bunch of rRNA because the original extraction certainly didn't remove it, so that got sequenced too. Thankfully, rRNA is pretty conserved, so we can use an rRNA dataset from a database to match to ours our rRNA and remove it using an alignment tool called Bowtie2. I created a conda environment with bowtie2 using the same method I showed above for creating evironments
+```
+conda create -n bowtie_environment bowtie2
+```
+I didn't specify a version, and neither should you. My bowtie version at the time was 2.5.0, and if you can't replicate my results you can try going back to that version, but otherwise you should just let conda find the latest version by default when it creates the environment. I used the same rRNA datasets as Jaydee did, which were _Octopus vulgaris_ 18s rRNA FJ617439 and _Octopus cyanea_ 28s rRNA from the SILVA database. Once you activate the bowtie environment in conda, you are ready to build a bowtie index.

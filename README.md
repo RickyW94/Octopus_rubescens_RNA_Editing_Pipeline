@@ -108,3 +108,12 @@ bowtie2 --quiet --very-sensitive-local --phred33 \# 'quiet' makes it so that it 
   -x Ovulgaris18sOcyanea28srRNA \# '-x' is the index call parameter, and we feed it the name we gave to all of our index files
   -U unfixrm_R4c_1_trimmed.fq \# 
 ```
+# Transcriptome Assembly using TrinityRNASeq
+## Install Trinity
+Trinity is already installed on the genomics computer, but here are the instructions for a fresh install
+```
+sudo apt update
+sudo apt upgrade
+sudo apt install -y trinityrnaseq
+```
+Guides for trinity installation include many dependencies such as bowtie2 and samtools, and those are all currently installed on the genomics computer as well. I don't have the trinity version number which I used (bad note taking), but the current version is up to date as of Jan 21, 2024.

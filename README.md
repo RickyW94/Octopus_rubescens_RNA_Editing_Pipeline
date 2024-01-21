@@ -100,9 +100,9 @@ Unfortunately, only the _O. vulgaris_ dataset is available on SILVA. I couldn't 
 ```
 bowtie2-build -f \# this is the initial command, '-f' tells it that we're using fasta format
 Ovulgaris18srRNA.fasta,Ocyanea28srRNA.fasta \# these are the two rRNA datasets in fasta format, separated by a comma, no space
-Ovulgaris18sOcyanea28srRNA # this is the base name which will be included in all of the index files it outputs, they will each have their own additions such as '.rev.1.bt2' tacked on
+Ovulgaris18sOcyanea28srRNA # this is the base name which will be included in all of the index files it outputs, they will each have their own filename additions such as '.rev.1.bt2' tacked on
 ```
-Removing rRNA using bowtie2. You'll have to run the command once for each every single file, you can't even combine the single pairs. But you could just open a bunch of terminal windows and start them all at once :P
+Removing rRNA using bowtie2. You'll have to run the command once for every single file, you can't even combine the single pairs. But you could just open a bunch of terminal windows and start them all at once :P
 ```
 bowtie2 --quiet --very-sensitive-local --phred33 \# 'quiet' makes it so that it won't vomit millions of lines of text into your terminal, the other 2 are technical alignment parameters which can be found on bowtie2's documentation site
   -x Ovulgaris18sOcyanea28srRNA \# '-x' is the index call parameter, and we feed it the name we gave to all of our index files

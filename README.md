@@ -107,3 +107,4 @@ Removing rRNA using bowtie2. You'll have to run the command once for every singl
 bowtie2 --quiet --very-sensitive-local --phred33 \# 'quiet' makes it so that it won't vomit millions of lines of text into your terminal, the other 2 are technical alignment parameters which can be found on bowtie2's documentation site
   -x Ovulgaris18sOcyanea28srRNA \# '-x' is the index call parameter, and we feed it the name we gave to all of our index files
   -U unfixrm_R4c_1_trimmed.fq \# 
+```

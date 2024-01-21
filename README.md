@@ -106,7 +106,11 @@ Removing rRNA using bowtie2. You'll have to run the command once for every singl
 ```
 bowtie2 --quiet --very-sensitive-local --phred33 \# 'quiet' makes it so that it won't vomit millions of lines of text into your terminal, the other 2 are technical alignment parameters which can be found on bowtie2's documentation site
   -x Ovulgaris18sOcyanea28srRNA \# '-x' is the index call parameter, and we feed it the name we gave to all of our index files
-  -U unfixrm_R4c_1_trimmed.fq \# 
+  -U unfixrm_R4c_1_trimmed.fq \#
+  --threads 15 \
+  --met-file blacklist_unpaired_unfixrm_R4c_1_trimmed_bowtie2_metrics.txt \# this is the metrics file it produces and I've never checked them but might be useful for troubleshooting and recordkeeping
+  --al blacklist_unpaired_aligned_unfixrm_R4c_1_trimmed.fq \# this output file will be all the reads that aligned to the rRNA index, meaning we don't want these reads because we don't want rRNA
+  --un blacklist_unpaired_unaligned_unfixrm_R4c_1_trimmed.fq \# the other output file, these reads didn't align to the rRNA index, which is good and we will continue with this file in the next steps 
 ```
 # Transcriptome Assembly using TrinityRNASeq
 ## Install Trinity

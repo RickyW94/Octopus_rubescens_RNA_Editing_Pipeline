@@ -121,3 +121,14 @@ sudo apt upgrade
 sudo apt install -y trinityrnaseq
 ```
 Guides for trinity installation include many dependencies such as bowtie2 and samtools, and those are all currently installed on the genomics computer as well. I don't have the trinity version number which I used (bad note taking), but the current version is up to date as of Jan 21, 2024.
+## Running Trinity
+The below command is a template to work off of. Make sure to delimit the list of input files by either commas or spaces, e.g. 'leftfile1,leftfile2,leftfile3' or 'leftfile1 leftfile2 leftfile3'. Definitely don't waste weeks trying to troubleshoot it while using both commas AND spaces...
+```
+sudo Trinity \
+  --seqtype fq \# denotes fastq as input sequence
+  --left \# first list of input files grouped by orientation
+  blacklist_unpaired_unaligned-unfixrm_R4c_1_trimmed.fq \# this list of files is delimited using spaces
+  ...list_of_files_separated_by_spaces.fqs \
+  --left \# second list of input files grouped by orientation and in same order as first list
+   blacklist_unpaired_unaligned-unfixrm_R4c_2_trimmed.fq \
+  second_list_of_files_separated_by_spaces.fqs

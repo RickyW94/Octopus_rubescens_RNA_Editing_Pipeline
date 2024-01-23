@@ -131,4 +131,7 @@ sudo Trinity \
   ...list_of_files_separated_by_spaces.fqs \
   --left \# second list of input files grouped by orientation and in same order as first list
    blacklist_unpaired_unaligned-unfixrm_R4c_2_trimmed.fq \
-  second_list_of_files_separated_by_spaces.fqs
+  second_list_of_files_separated_by_spaces.fqs \
+  --max_memory 200G \
+  --CPU 15 \
+  --output $(pwd)/trinity_out_dir > run.log 2>&1 # I believe this creates the output directory, and it also creates the run.log file, but I never bothered to figure out why the run.log gets piped to '2>&1'

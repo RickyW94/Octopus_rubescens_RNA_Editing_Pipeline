@@ -174,8 +174,21 @@ But first install seqtk. I used V1.3-r106, again the installation method is lost
 ```
 seqtk subseq rubescens_transcriptome_ORF_ignore_nested.fasta swissprot_ORF_seqid.lst > swissprotORF.fasta
 ```
+## Remove duplicate sequences from swissprotORF.fasta
+This step wasn't included in the original pipeline, but I have a feeling it must have been done at some point because it's impossible to proceed with duplicates in the file. I also have no idea why it includes duplicate sequences but maybe it stems from me following Jaydee's exact seqtk command without properly understanding it.
+Rename 'swissprotORF.fasta' to 'swissprotORF_with_dupes.fasta'
+```
+seqkit rmdup -s < swissprotORF_with_dupes.fasta > swissprotORF.fasta
+```
+
 ## Generate stats on swissprotORF.fasta using TrinityStats
 This script is included in the 'util' folder in the trinity installation folder.
 ```
 perl ~/trinityrnaseq-v2.14.0/util/TrinityStats.pl swissprotORF.fasta > swissprotORFstats.txt
 ```
+# Prep index of swissprotORF.fasta for the later steps
+```
+samtools faidx swissprotORF.fasta
+bowtie2-build -f swissprotORF.fasta swissprotORF
+```
+# DNA QC

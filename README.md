@@ -192,3 +192,24 @@ samtools faidx swissprotORF.fasta
 bowtie2-build -f swissprotORF.fasta swissprotORF
 ```
 # DNA QC
+Trimming the raw DNA reads
+We will used '--paired' to let us feed it consecutive pairs. Note these pairs are consecutive, not mirrored. So we feed it one pair at a time. This is different than feeding it all reverse followed by all forward reads, don't do that.
+```
+trim_galore --fastqc --paired \
+  D6_CKDN220050989-1A_H7NK3DSX5_L1_1.fq.gz \
+  D6_CKDN220050989-1A_H7NK3DSX5_L1_2.fq.gz \
+  D6_CKDN220050989-1A_H7NKKDSX5_L1_1.fq.gz \
+  D6_CKDN220050989-1A_H7NKKDSX5_L1_2.fq.gz \
+  D7_CKDN220050990-1A_H7MMJDSX5_L1_1.fq.gz \
+  D7_CKDN220050990-1A_H7MMJDSX5_L1_2.fq.gz \
+  D8_CKDN220050991-1A_H7MMJDSX5_L1_1.fq.gz \
+  D8_CKDN220050991-1A_H7MMJDSX5_L1_2.fq.gz \
+  D9b_CKDN220056888-1A_HJN2JDSX5_L2_1.fq.gz \
+  D9b_CKDN220056888-1A_HJN2JDSX5_L2_2.fq.gz \
+  D9b_CKDN220056888-1A_HM2NKDSX5_L3_1.fq.gz \
+  D9b_CKDN220056888-1A_HM2NKDSX5_L3_2.fq.gz \
+  D10b_CKDN220056889-1A_HJN2JDSX5_L2_1.fq.gz \
+  D10b_CKDN220056889-1A_HJN2JDSX5_L2_2.fq.gz \
+  D10b_CKDN220056889-1A_HM2NKDSX5_L1_1.fq.gz \
+  D10b_CKDN220056889-1A_HM2NKDSX5_L1_2.fq.gz
+```

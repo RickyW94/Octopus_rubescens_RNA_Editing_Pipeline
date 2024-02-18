@@ -149,3 +149,5 @@ This command will ignore ORFs nested in larger ORFs
 ```
 ~/ORFfinder -in trinity_out_dir.Trinity.fasta -out rubescens_transcriptome_ORF_ignore_nested.fasta -n true -outfmt 1 > rubescens_transcriptome_ORFfinder_log.txt
 ```
+# Swissprot
+This next section blasts the ORFs against the swissprot database. **It should be noted that these results were later determined to be very unreliable. If the swissprot annotation says it's an ATPase, it might be, it might not be.**

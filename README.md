@@ -135,3 +135,17 @@ sudo Trinity \
   --max_memory 200G \
   --CPU 15 \
   --output $(pwd)/trinity_out_dir > run.log 2>&1 # I believe this creates the output directory, and it also creates the run.log file, but I never bothered to figure out why the run.log gets piped to '2>&1'
+```
+# Transcriptome analysis
+## Busco
+Install busco. I used V5.4.2 but the installation command has been lost to time.
+```
+busco -i trinity_out_dir.Trinity.fasta -l mollusca_odb10 -o rubescens_tran_busco -m tran -c 18 -f
+```
+# ORFfinder
+Get ORFfinder [here](https://ftp.ncbi.nlm.nih.gov/genomes/TOOLS/ORFfinder/linux-i64/)
+The command may fail to find any ORFs and require troubleshooting. I generated a reverse complement but that didn't help. The main thing is to make sure your transcriptome assembled in some sensible fashion.
+This command will ignore ORFs nested in larger ORFs
+```
+~/ORFfinder -in trinity_out_dir.Trinity.fasta -out rubescens_transcriptome_ORF_ignore_nested.fasta -n true -outfmt 1 > rubescens_transcriptome_ORFfinder_log.txt
+```

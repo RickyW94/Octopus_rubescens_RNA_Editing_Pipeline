@@ -165,3 +165,17 @@ perl ~/ncbi-blast-2.13.0+/bin/update_blastdb.pl --decompress swissprot
 ## Running blast
 ```blastx -query rubescens_transcriptome_ORF_ignore_nested.fasta -out rubescens_transcriptome_ORF_swissprot_blastx_1bestalignment.txt -db ~/ncbi-blast-2.13.0+/bin/blastdb/swissprot -evalue 1e-6 -max_target_seqs 1 -subject_besthit -outfmt "6 qaccver saccver pident bitscore evalue" -num_threads 16
 ```
+## Running swissprot analysis
+Download this python script [here](https://github.com/asereewit/RNA-Editing-in-Octopus-rubescens-in-Response-to-Ocean-Acidification-Methods/blob/0.1.0/swissprot_blastx_results_analysis.py)
+This script wasn't tested after upload, so you'll need to change line 9 of this text file using nano. Change 'row[1]' to 'row[0]' because somebody mixed up python and R indexing.
+## Pull swissprot blasted ORFs from original transcriptome
+These will be collated into a file titled 'swissprotORF.fasta
+But first install seqtk. I used V1.3-r106, again the installation method is lost to time, so you'll have to google it.
+```
+seqtk subseq rubescens_transcriptome_ORF_ignore_nested.fasta swissprot_ORF_seqid.lst > swissprotORF.fasta
+```
+## Generate stats on swissprotORF.fasta using TrinityStats
+This script is included in the 'util' folder in the trinity installation folder.
+```
+perl ~/trinityrnaseq-v2.14.0/util/TrinityStats.pl swissprotORF.fasta > swissprotORFstats.txt
+```

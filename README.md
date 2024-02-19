@@ -174,13 +174,16 @@ But first install seqtk. I used V1.3-r106, again the installation method is lost
 ```
 seqtk subseq rubescens_transcriptome_ORF_ignore_nested.fasta swissprot_ORF_seqid.lst > swissprotORF.fasta
 ```
-## Remove duplicate sequences from swissprotORF.fasta
-This step wasn't included in the original pipeline, but I have a feeling it must have been done at some point because it's impossible to proceed with duplicates in the file. I also have no idea why it includes duplicate sequences but maybe it stems from me following Jaydee's exact seqtk command without properly understanding it.
+## Remove duplicate sequences and linebreaks from swissprotORF.fasta
+This step wasn't included in the original pipeline, but I have a feeling it must have been done at some point because it's impossible to proceed with duplicates in the file. I also have no idea why it includes duplicate sequences but maybe it stems from me following Jaydee's exact seqtk command without properly understanding it. The same applies for linebreaks. Don't know why they're there, 
 Rename 'swissprotORF.fasta' to 'swissprotORF_with_dupes.fasta'
 ```
 seqkit rmdup -s < swissprotORF_with_dupes.fasta > swissprotORF.fasta
 ```
-
+Rename 'swissprotORF.fasta' to 'swissprotORF_withlinebreaks.fasta'
+```
+seqtk seq -l 0 swissprotORF_withlinebreaks.fasta > swissprotORF.fasta
+```
 ## Generate stats on swissprotORF.fasta using TrinityStats
 This script is included in the 'util' folder in the trinity installation folder.
 ```
@@ -261,9 +264,9 @@ bowtie2 \
   --met-file octo1_orf_alignment_bowtie2_metrics.txt \
   -q \
   -x swissprotORF \
-  -U blacklist_unpaired_unaligned_unfixrm_R4c_1_trimmed.fq \
+  -U blacklist_unpaired_unaligned_unfixrm_R4c_trimmed.fq \
   | samtools view -b -F 260 --threads 15 > \
-  R4c_1_rna_orf_alignment.bam
+  R4c_rna_orf_alignment.bam
 ```
 The above command maps the reads using the bowtie index, then outputs that mapping to standard out. The standard output is piped to samtools using the '|' operator. Samtools puts the output into a bam file for use in the final step.
 You'll have to repeat the command for each read file, making sure to change both the names of the inputs and outputs for each run.
@@ -272,8 +275,8 @@ The bam file outputs then get sorted using samtools' sort function
 samtools \
   sort \
   -@ 15 \# this specifies number of threads. I think '-t' was already used for another parameter so they used an '@' symbol instead :p
-  -o R4c_1_rna_orf_alignment_sorted.bam \# this is the name of the output file
-  R4c_1_rna_orf_alignment.bam # this is the input file. I don't know why the command was structured this way but just keep this in mind and don't get confused
+  -o R4c_rna_orf_alignment_sorted.bam \# this is the name of the output file
+  R4c_rna_orf_alignment.bam # this is the input file. I don't know why the command was structured this way but just keep this in mind and don't get confused
 ```
 Again you'll have to repeat the above command for each bam file to generate sorted bams for each.
 Lastly you'll index the bam files using samtools again, generating bam index files '.bai'
@@ -282,7 +285,7 @@ samtools \
   index \
   -b \
   -@ 16 \
-  R4c_1_rna_orf_alignment_sorted.bam
+  R4c_rna_orf_alignment_sorted.bam
 ```
 Repeat for each file.
 ## Mapping, sorting, and indexing the DNA

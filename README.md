@@ -265,8 +265,10 @@ bowtie2 \
   -q \
   -x swissprotORF \
   -U blacklist_unpaired_unaligned_unfixrm_R4c_trimmed.fq \
-  | samtools view -b -F 260 --threads 15 > \
-  R4c_rna_orf_alignment.bam
+  | samtools view -b \
+    -F 200 \# this is how much RAM the command will allocate
+    --threads 15 > \
+    R4c_rna_orf_alignment.bam
 ```
 The above command maps the reads using the bowtie index, then outputs that mapping to standard out. The standard output is piped to samtools using the '|' operator. Samtools puts the output into a bam file for use in the final step.
 You'll have to repeat the command for each read file, making sure to change both the names of the inputs and outputs for each run.
@@ -284,8 +286,43 @@ Lastly you'll index the bam files using samtools again, generating bam index fil
 samtools \
   index \
   -b \
-  -@ 16 \
+  -@ 15 \
   R4c_rna_orf_alignment_sorted.bam
 ```
 Repeat for each file.
 ## Mapping, sorting, and indexing the DNA
+I believe this command works for both DNA files at once. I haven't run it in quite a while but it should work.
+```
+bowtie2 \
+  --local \
+  --threads 15 \
+  --quiet \
+  -t --met-file pooled_gDNA_orf_alignment_bowtie2_metrics.txt \
+  -q \
+  -x swissprotORF \
+  -U pooled_trimmed_reads_1.fq,pooled_trimmed_reads_2.fq \
+  | samtools view -b \
+    -h \
+    -F 200 \
+    -q 10 \
+    -@ 15 \
+    -o octo_dna_orf_alignment.bam
+```
+Now sort them
+```
+samtools \
+  sort \
+  -@ 15 \
+  -o octo_dna_orf_alignment_sorted.bam \
+  octo_dna_orf_alignment.bam
+```
+```
+samtools \
+  index \
+  -b \
+  -@ 15 \
+  octo_dna_orf_alignment_sorted.bam
+```
+# That should be it
+Run Jaydee's python script 'editing_sites_screening.py' located in /media/work/Ricky_Sequencing/trinity_working_dir
+You'll need all the bam files and bam index files in the same folder. Hopefully everything will be in the same folder from start to finish.

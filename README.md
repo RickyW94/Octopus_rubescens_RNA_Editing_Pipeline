@@ -188,8 +188,8 @@ perl ~/trinityrnaseq-v2.14.0/util/TrinityStats.pl swissprotORF.fasta > swissprot
 ```
 # Prep index of swissprotORF.fasta for the later steps
 ```
-samtools faidx swissprotORF.fasta
-bowtie2-build -f swissprotORF.fasta swissprotORF
+samtools faidx swissprotORF.fasta # makes index for editing sites detection script
+bowtie2-build -f swissprotORF.fasta swissprotORF # builds bowtie index for the next mapping steps
 ```
 # DNA QC
 Trimming the raw DNA reads
@@ -241,3 +241,4 @@ cat \
   D9b_CKDN220056888-1A_HM2NKDSX5_L3_2_val_2.fq.gz \
   > /media/data/rwright/pooled_DNA_reads/pooled_trimmed_reads_2.fq.gz
 ```
+# 

@@ -213,3 +213,31 @@ trim_galore --fastqc --paired \
   D10b_CKDN220056889-1A_HM2NKDSX5_L1_1.fq.gz \
   D10b_CKDN220056889-1A_HM2NKDSX5_L1_2.fq.gz
 ```
+## Concatenate all DNA reads into two files
+Take all the 'forward' reads and 'reverse' reads and concatenate them into two respective files. Leave them zipped
+```
+cat \
+  D10b_CKDN220056889-1A_HJN2JDSX5_L2_1_val_1.fq.gz \
+  D10b_CKDN220056889-1A_HM2NKDSX5_L1_1_val_1.fq.gz \
+  D4_CKDN220050988-1A_H7NK3DSX5_L1_1_val_1.fq.gz \
+  D6_CKDN220050989-1A_H7NK3DSX5_L1_1_val_1.fq.gz \
+  D6_CKDN220050989-1A_H7NKKDSX5_L1_1_val_1.fq.gz \
+  D7_CKDN220050990-1A_H7MMJDSX5_L1_1_val_1.fq.gz \
+  D8_CKDN220050991-1A_H7MMJDSX5_L1_1_val_1.fq.gz \
+  D9b_CKDN220056888-1A_HJN2JDSX5_L2_1_val_1.fq.gz \
+  D9b_CKDN220056888-1A_HM2NKDSX5_L3_1_val_1.fq.gz \
+  > /media/data/rwright/pooled_DNA_reads/pooled_trimmed_reads_1.fq.gz
+```
+```
+cat \
+  D10b_CKDN220056889-1A_HJN2JDSX5_L2_2_val_2.fq.gz \
+  D10b_CKDN220056889-1A_HM2NKDSX5_L1_2_val_2.fq.gz \
+  D4_CKDN220050988-1A_H7NK3DSX5_L1_2_val_2.fq.gz \
+  D6_CKDN220050989-1A_H7NK3DSX5_L1_2_val_2.fq.gz \
+  D6_CKDN220050989-1A_H7NKKDSX5_L1_2_val_2.fq.gz \
+  D7_CKDN220050990-1A_H7MMJDSX5_L1_2_val_2.fq.gz \
+  D8_CKDN220050991-1A_H7MMJDSX5_L1_2_val_2.fq.gz \
+  D9b_CKDN220056888-1A_HJN2JDSX5_L2_2_val_2.fq.gz \
+  D9b_CKDN220056888-1A_HM2NKDSX5_L3_2_val_2.fq.gz \
+  > /media/data/rwright/pooled_DNA_reads/pooled_trimmed_reads_2.fq.gz
+```

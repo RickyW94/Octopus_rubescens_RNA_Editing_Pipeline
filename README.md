@@ -241,4 +241,21 @@ cat \
   D9b_CKDN220056888-1A_HM2NKDSX5_L3_2_val_2.fq.gz \
   > /media/data/rwright/pooled_DNA_reads/pooled_trimmed_reads_2.fq.gz
 ```
-# 
+# Map all the reads to swissprotORF.fasta
+## Mapping, sorting, and indexing the RNA
+Map each read file to swissprotORF using the index created by bowtie2
+```
+bowtie2 \
+  --local \
+  --threads 15 \
+  --quiet \
+  -t \
+  --met-file octo1_orf_alignment_bowtie2_metrics.txt \
+  -q \
+  -x swissprotORF \
+  -U blacklist_unpaired_unaligned_unfixrm_R4c_1_trimmed.fq \
+  | samtools view -b -F 260 --threads 15 > \
+  R4c_1_rna_orf_alignment.bam
+```
+The above command maps the reads using the bowtie index, then outputs that mapping to standard out. The standard output is piped to samtools using the '|' operator. Samtools puts the output into a bam file for use in the final step.
+You'll have to repeat the command for each read file, making sure to change both the names of the inputs and outputs for each run.

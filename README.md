@@ -241,6 +241,14 @@ cat \
   D9b_CKDN220056888-1A_HM2NKDSX5_L3_2_val_2.fq.gz \
   > /media/data/rwright/pooled_DNA_reads/pooled_trimmed_reads_2.fq.gz
 ```
+# Concatenate RNA read pairs into 1 file each
+The final python script only accepts 6 files and concatenating the paired reads doesn't matter since their paired nature mostly helped for transcriptome assembly, not editing detection
+```
+cat \
+  blacklist_unpaired_unaligned_unfixrm_R4c_1_trimmed.fq \
+  blacklist_unpaired_unaligned_unfixrm_R4c_2_trimmed.fq \
+  > blacklist_unpaired_unaligned_unfixrm_R4c_trimmed.fq
+```
 # Map all the reads to swissprotORF.fasta
 ## Mapping, sorting, and indexing the RNA
 Map each read file to swissprotORF using the index created by bowtie2
@@ -259,3 +267,22 @@ bowtie2 \
 ```
 The above command maps the reads using the bowtie index, then outputs that mapping to standard out. The standard output is piped to samtools using the '|' operator. Samtools puts the output into a bam file for use in the final step.
 You'll have to repeat the command for each read file, making sure to change both the names of the inputs and outputs for each run.
+The bam file outputs then get sorted using samtools' sort function
+```
+samtools \
+  sort \
+  -@ 15 \# this specifies number of threads. I think '-t' was already used for another parameter so they used an '@' symbol instead :p
+  -o R4c_1_rna_orf_alignment_sorted.bam \# this is the name of the output file
+  R4c_1_rna_orf_alignment.bam # this is the input file. I don't know why the command was structured this way but just keep this in mind and don't get confused
+```
+Again you'll have to repeat the above command for each bam file to generate sorted bams for each.
+Lastly you'll index the bam files using samtools again, generating bam index files '.bai'
+```
+samtools \
+  index \
+  -b \
+  -@ 16 \
+  R4c_1_rna_orf_alignment_sorted.bam
+```
+Repeat for each file.
+## Mapping, sorting, and indexing the DNA

@@ -266,7 +266,7 @@ bowtie2 \
   -x swissprotORF \
   -U blacklist_unpaired_unaligned_unfixrm_R4c_trimmed.fq \
   | samtools view -b \
-    -F 200 \# this is how much RAM the command will allocate
+    -F 260
     --threads 15 > \
     R4c_rna_orf_alignment.bam
 ```
@@ -303,7 +303,7 @@ bowtie2 \
   -U pooled_trimmed_reads_1.fq,pooled_trimmed_reads_2.fq \
   | samtools view -b \
     -h \
-    -F 200 \
+    -F 260 \
     -q 10 \
     -@ 15 \
     -o octo_dna_orf_alignment.bam

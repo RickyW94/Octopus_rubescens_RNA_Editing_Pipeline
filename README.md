@@ -323,6 +323,21 @@ samtools \
   -@ 15 \
   octo_dna_orf_alignment_sorted.bam
 ```
+
+## Count mapped reads
+RNA
+```
+samtools view -c -F 260 R4c_1_2_alignment.bam
+samtools view -c -F 260 R6c_1_2_alignment.bam
+samtools view -c -F 260 R7c_1_2_alignment.bam
+samtools view -c -F 260 R8c_1_2_alignment.bam
+samtools view -c -F 260 R9c_1_2_alignment.bam
+samtools view -c -F 260 R10c_1_2_alignment.bam
+```
+DNA
+```
+samtools view -c -F 260 octo_dna_orf_alignment.bam
+```
 # That should be it
 Run Jaydee's python script 'editing_sites_screening.py' located in /media/work/Ricky_Sequencing/trinity_working_dir
 You'll need all the bam files and bam index files in the same folder. Hopefully everything will be in the same folder from start to finish.

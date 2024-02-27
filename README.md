@@ -199,6 +199,8 @@ Trimming the raw DNA reads
 We will used '--paired' to let us feed it consecutive pairs. Note these pairs are consecutive, not mirrored. So we feed it one pair at a time. This is different than feeding it all reverse followed by all forward reads, don't do that.
 ```
 trim_galore --fastqc --paired \
+  D4_CKDN220050988-1A_H7NK3DSX5_L1_1.fq.gz \
+  D4_CKDN220050988-1A_H7NK3DSX5_L1_2.fq.gz \
   D6_CKDN220050989-1A_H7NK3DSX5_L1_1.fq.gz \
   D6_CKDN220050989-1A_H7NK3DSX5_L1_2.fq.gz \
   D6_CKDN220050989-1A_H7NKKDSX5_L1_1.fq.gz \

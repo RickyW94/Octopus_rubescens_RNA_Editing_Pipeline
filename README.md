@@ -196,6 +196,7 @@ bowtie2-build -f swissprotORF.fasta swissprotORF # builds bowtie index for the n
 ```
 # DNA QC
 Trimming the raw DNA reads
+
 We will used '--paired' to let us feed it consecutive pairs. Note these pairs are consecutive, not mirrored. So we feed it one pair at a time. This is different than feeding it all reverse followed by all forward reads, don't do that.
 ```
 trim_galore --fastqc --paired \

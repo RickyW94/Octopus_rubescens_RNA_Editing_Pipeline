@@ -344,3 +344,4 @@ samtools view -c -F 260 octo_dna_orf_alignment.bam
 # That should be it
 Run Jaydee's python script 'editing_sites_screening.py' located in /media/work/Ricky_Sequencing/trinity_working_dir
 You'll need all the bam files and bam index files in the same folder. Hopefully everything will be in the same folder from start to finish.
+I'm rerunning "editing_sites_screening.py" in /media/data/rwright/final_screening

@@ -292,7 +292,6 @@ The bam file outputs then get sorted using samtools' sort function
     --threads 15 > \
     R6c_rna_orf_alignment.bam
   ```
-
   ```
   bowtie2 \
   --local \
@@ -354,6 +353,7 @@ The bam file outputs then get sorted using samtools' sort function
     R10c_rna_orf_alignment.bam
   ```
 </details>
+
 ```
 samtools \
   sort \

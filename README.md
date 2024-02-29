@@ -269,7 +269,7 @@ bowtie2 \
   -x swissprotORF \
   -U blacklist_unpaired_unaligned_unfixrm_R4c_1_trimmed.fq.gz,blacklist_unpaired_unaligned_unfixrm_R4c_2_trimmed.fq.gz \
   | samtools view -b \
-    -F 260
+    -F 260 \
     --threads 15 > \
     R4c_rna_orf_alignment.bam
 ```
@@ -291,7 +291,7 @@ The bam file outputs then get sorted using samtools' sort function
   -x swissprotORF \
   -U blacklist_unpaired_unaligned_unfixrm_R6c_1_trimmed.fq.gz,blacklist_unpaired_unaligned_unfixrm_R6c_2_trimmed.fq.gz \
   | samtools view -b \
-    -F 260
+    -F 260 \
     --threads 15 > \
     R6c_rna_orf_alignment.bam
   ```
@@ -308,7 +308,7 @@ The bam file outputs then get sorted using samtools' sort function
   -x swissprotORF \
   -U blacklist_unpaired_unaligned_unfixrm_R7c_1_trimmed.fq.gz,blacklist_unpaired_unaligned_unfixrm_R7c_2_trimmed.fq.gz \
   | samtools view -b \
-    -F 260
+    -F 260 \
     --threads 15 > \
     R7c_rna_orf_alignment.bam
   ```
@@ -325,7 +325,7 @@ The bam file outputs then get sorted using samtools' sort function
   -x swissprotORF \
   -U blacklist_unpaired_unaligned_unfixrm_R8c_1_trimmed.fq.gz,blacklist_unpaired_unaligned_unfixrm_R8c_2_trimmed.fq.gz \
   | samtools view -b \
-    -F 260
+    -F 260 \
     --threads 15 > \
     R8c_rna_orf_alignment.bam
   ```
@@ -342,7 +342,7 @@ The bam file outputs then get sorted using samtools' sort function
   -x swissprotORF \
   -U blacklist_unpaired_unaligned_unfixrm_R9c_1_trimmed.fq.gz,blacklist_unpaired_unaligned_unfixrm_R9c_2_trimmed.fq.gz \
   | samtools view -b \
-    -F 260
+    -F 260 \
     --threads 15 > \
     R9c_rna_orf_alignment.bam
   ```
@@ -359,7 +359,7 @@ The bam file outputs then get sorted using samtools' sort function
   -x swissprotORF \
   -U blacklist_unpaired_unaligned_unfixrm_R10c_1_trimmed.fq.gz,blacklist_unpaired_unaligned_unfixrm_R10c_2_trimmed.fq.gz \
   | samtools view -b \
-    -F 260
+    -F 260 \
     --threads 15 > \
     R10c_rna_orf_alignment.bam
   ```

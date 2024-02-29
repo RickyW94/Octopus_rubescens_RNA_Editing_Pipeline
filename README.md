@@ -275,8 +275,9 @@ bowtie2 \
 ```
 The above command maps the reads using the bowtie index, then outputs that mapping to standard out. The standard output is piped to samtools using the '|' operator. Samtools puts the output into a bam file for use in the final step.
 The bam file outputs then get sorted using samtools' sort function
+**Expand list for all commands**
 <details>
-  <summary>**The rest of the commands**</summary>
+  <summary>The rest of the commands</summary>
   ```
   bowtie2 \
   --local \

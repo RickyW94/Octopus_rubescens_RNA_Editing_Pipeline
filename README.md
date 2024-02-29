@@ -264,10 +264,10 @@ bowtie2 \
   --threads 15 \
   --quiet \
   -t \
-  --met-file octo1_orf_alignment_bowtie2_metrics.txt \
+  --met-file R4c_rna_orf_alignment_bowtie2_metrics.txt \
   -q \
   -x swissprotORF \
-  -U blacklist_unpaired_unaligned_unfixrm_R4c_trimmed.fq \
+  -U blacklist_unpaired_unaligned_unfixrm_R4c_1_trimmed.fq,blacklist_unpaired_unaligned_unfixrm_R4c_2_trimmed.fq \
   | samtools view -b \
     -F 260
     --threads 15 > \

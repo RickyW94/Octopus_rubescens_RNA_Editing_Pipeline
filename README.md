@@ -279,6 +279,7 @@ The bam file outputs then get sorted using samtools' sort function
 **Expand list for all commands**
 <details>
   <summary>The rest of the commands</summary>
+ 
   ```
   bowtie2 \
   --local \

@@ -392,7 +392,7 @@ bowtie2 \
   -t --met-file pooled_gDNA_orf_alignment_bowtie2_metrics.txt \
   -q \
   -x swissprotORF \
-  -U pooled_trimmed_reads_1.fq,pooled_trimmed_reads_2.fq \
+  -U pooled_trimmed_reads_1.fq.gz,pooled_trimmed_reads_2.fq.gz \
   | samtools view -b \
     -h \
     -F 260 \

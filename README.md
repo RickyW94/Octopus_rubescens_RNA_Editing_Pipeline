@@ -195,7 +195,7 @@ samtools faidx swissprotORF.fasta # makes index for editing sites detection scri
 bowtie2-build -f swissprotORF.fasta swissprotORF # builds bowtie index for the next mapping steps
 ```
 # DNA QC
-Trimming the raw DNA reads
+Trimming the raw DNA reads using Trim Galore V0.6.7. This application bundles two tools called FastQC V0.11.9 and CutAdapt V4.1. Install the latest version an only revert to these listed versions if you encounter issues.
 
 We will used '--paired' to let us feed it consecutive pairs. Note these pairs are consecutive, not mirrored. So we feed it one pair at a time. This is different than feeding it all reverse followed by all forward reads, don't do that.
 ```

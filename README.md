@@ -150,7 +150,7 @@ This command will ignore ORFs nested in larger ORFs
 ~/ORFfinder -in trinity_out_dir.Trinity.fasta -out rubescens_transcriptome_ORF_ignore_nested.fasta -n true -outfmt 1 > rubescens_transcriptome_ORFfinder_log.txt
 ```
 # Swissprot
-This next section blasts the ORFs against the swissprot database. **It should be noted that these results were later determined to be very unreliable. If the swissprot annotation says it's an ATPase, it might be, it might not be.**
+This next section s the ORFs against the swissprot database. **It should be noted that these results were later determined to be very unreliable. If the swissprot annotation says it's an ATPase, it might be, it might not be.**
 ## Installing blast
 This should already be installed by now, but here's the instructions as I used them
 ```
@@ -163,7 +163,8 @@ Decompress Swissprot
 perl ~/ncbi-blast-2.13.0+/bin/update_blastdb.pl --decompress swissprot
 ```
 ## Running blast
-```blastx -query rubescens_transcriptome_ORF_ignore_nested.fasta -out rubescens_transcriptome_ORF_swissprot_blastx_1bestalignment.txt -db ~/ncbi-blast-2.13.0+/bin/blastdb/swissprot -evalue 1e-6 -max_target_seqs 1 -subject_besthit -outfmt "6 qaccver saccver pident bitscore evalue" -num_threads 16
+```
+blastx -query rubescens_transcriptome_ORF_ignore_nested.fasta -out rubescens_transcriptome_ORF_swissprot_blastx_1bestalignment.txt -db ~/ncbi-blast-2.13.0+/bin/blastdb/swissprot -evalue 1e-6 -max_target_seqs 1 -subject_besthit -outfmt "6 qaccver saccver pident bitscore evalue" -num_threads 16
 ```
 ## Running swissprot analysis
 Download this python script [here](https://github.com/asereewit/RNA-Editing-in-Octopus-rubescens-in-Response-to-Ocean-Acidification-Methods/blob/0.1.0/swissprot_blastx_results_analysis.py)
